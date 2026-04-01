@@ -8,154 +8,173 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="bg-photo" aria-hidden="true"></div>
-  <div class="bg-veil" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
+  <div class="scanlines" aria-hidden="true"></div>
 
-  <header class="nav-wrap">
-    <nav class="nav" aria-label="Primary">
-      <a class="nav-brand" href="#">Mridul Singh</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="nav-actions">
-        <a class="icon-link" href="https://www.linkedin.com/in/send2mridul" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a class="icon-link" href="https://github.com/send2mridul" rel="noopener noreferrer" aria-label="GitHub">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-      </div>
-    </nav>
-  </header>
+  <a class="skip" href="#main">Skip to portfolio</a>
 
-  <main id="main">
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-inner glass">
-        <p class="eyebrow">Hello</p>
-        <h1 id="hero-heading" class="display">Mridul Singh</h1>
-        <p class="subtitle">Software Development Engineer · Bengaluru, Karnataka</p>
-        <p class="hero-note">This site is a quiet mirror of my profile: what I do, where I studied, how to reach me.</p>
+  <div id="terminal-stage" class="terminal-stage">
+    <div class="terminal window-shake-target" role="region" aria-label="Terminal">
+      <div class="terminal-chrome">
+        <span class="dot dot-red" aria-hidden="true"></span>
+        <span class="dot dot-yellow" aria-hidden="true"></span>
+        <span class="dot dot-green" aria-hidden="true"></span>
+        <span class="terminal-title">zsh · portfolio</span>
       </div>
-    </section>
-
-    <section class="section" id="about" aria-labelledby="about-h">
-      <div class="panel glass" tabindex="-1">
-        <h2 id="about-h" class="section-title">About</h2>
-        <div class="prose">
-          <p>
-            A dedicated Software developer with experience in bot development using Node.js primarily.
-            Have contributed in development of bots for various clients. Have also worked on full stack
-            development using Vue.js and AWS in python.
-          </p>
-          <p>
-            Creating my own thing fascinates me and using my ability to optimise things. I like doing
-            competitive coding and often solve questions on Leetcode and GFG covering questions on Data
-            structures and Algorithm.
-          </p>
+      <div class="terminal-screen">
+        <div id="terminal-lines" class="terminal-lines" aria-live="polite"></div>
+        <div class="terminal-line input-row" id="terminal-input-row">
+          <span class="prompt" aria-hidden="true"><span class="prompt-user">visitor@mridul.dev</span><span class="prompt-path">:~$</span></span>
+          <label class="sr-only" for="terminal-input">Enter full name to continue</label>
+          <span class="typed" id="terminal-mirror" aria-hidden="true"></span><span class="cursor" id="terminal-cursor" aria-hidden="true"></span>
+          <input type="text" id="terminal-input" class="terminal-field" name="identity" autocomplete="off" spellcheck="false" />
         </div>
       </div>
-    </section>
+    </div>
+    <p class="terminal-hint"><kbd>Enter</kbd> to submit · type <span class="accent">Mridul Singh</span></p>
+    <button type="button" class="skip-intro" id="skip-intro">View portfolio</button>
+  </div>
 
-    <section class="section" id="experience" aria-labelledby="exp-h">
-      <h2 id="exp-h" class="section-title section-title-outside">Experience</h2>
-      <ol class="timeline">
-        <li class="timeline-item glass">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-body">
-            <p class="role-title">Software Development Engineer 2</p>
-            <p class="role-company">Acko · Full-time</p>
-            <p class="role-meta">Feb 2022 to present · Bengaluru, Karnataka</p>
-            <p class="role-skills">AWS · Python · and more</p>
-          </div>
-        </li>
-        <li class="timeline-item glass">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-body">
-            <p class="role-title">Software Engineer</p>
-            <p class="role-company">yellow.ai · Full-time</p>
-            <p class="role-meta">Dec 2020 to Feb 2022 · Bengaluru, Karnataka</p>
-            <p class="role-desc">
-              Artificial intelligence powered enterprise chatbots. Built full-fledged bots for clients
-              by turning their problem statements into technically feasible chatbots.
+  <div id="portfolio-wrap" class="portfolio-wrap" hidden inert>
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-brand" href="#">Mridul Singh</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a class="icon-link" href="https://www.linkedin.com/in/send2mridul" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a class="icon-link" href="https://github.com/send2mridul" rel="noopener noreferrer" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero-split" aria-labelledby="hero-heading">
+        <div class="hero-copy">
+          <p class="eyebrow">Verified session</p>
+          <h1 id="hero-heading" class="display">Mridul Singh</h1>
+          <p class="subtitle">Software Development Engineer, Bengaluru, Karnataka</p>
+          <p class="hero-note">This site mirrors my profile: work history, education, and where to connect.</p>
+        </div>
+        <div class="hero-photo-wrap">
+          <img
+            class="hero-photo"
+            src="assets/portrait.png"
+            alt="Portrait of Mridul Singh"
+            width="640"
+            height="853"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-h">
+        <div class="panel">
+          <h2 id="about-h" class="section-title">About</h2>
+          <div class="prose">
+            <p>
+              A dedicated Software developer with experience in bot development using Node.js primarily.
+              Have contributed in development of bots for various clients. Have also worked on full stack
+              development using Vue.js and AWS in python.
             </p>
-            <p class="role-skills">JavaScript · SQL</p>
-          </div>
-        </li>
-        <li class="timeline-item glass">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-body">
-            <p class="role-title">Software Engineer</p>
-            <p class="role-company">Fokal AI</p>
-            <p class="role-meta">Jan 2020 to Dec 2020 · Greater Bengaluru Area</p>
-            <p class="role-desc">
-              Data transformation tooling: a full application with a user-friendly UI for
-              extracting and working with data pipelines.
+            <p>
+              Creating my own thing fascinates me and using my ability to optimise things. I like doing
+              competitive coding and often solve questions on Leetcode and GFG covering questions on Data
+              structures and Algorithm.
             </p>
-            <p class="role-skills">AWS · Python</p>
           </div>
-        </li>
-      </ol>
-    </section>
+        </div>
+      </section>
 
-    <section class="section" id="education" aria-labelledby="edu-h">
-      <h2 id="edu-h" class="section-title section-title-outside">Education</h2>
-      <div class="edu-grid">
-        <article class="panel glass edu-card">
-          <h3 class="edu-name">CMR Institute of Technology</h3>
-          <p class="edu-detail">Bachelor of Engineering, Computer Science</p>
-          <p class="edu-meta">Bengaluru · 2016 to 2020</p>
-          <p class="edu-tags">Android development · Java</p>
-        </article>
-        <article class="panel glass edu-card">
-          <h3 class="edu-name">Kendriya Vidyalaya</h3>
-          <p class="edu-detail">Computer Science</p>
-          <p class="edu-meta">2005 to 2016 · Grade 12</p>
-        </article>
-      </div>
-    </section>
+      <section class="section" id="experience" aria-labelledby="exp-h">
+        <h2 id="exp-h" class="section-title section-title-outside">Experience</h2>
+        <ol class="timeline">
+          <li class="timeline-item panel">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <p class="role-title">Software Development Engineer 2</p>
+              <p class="role-company">Acko, full-time</p>
+              <p class="role-meta">Feb 2022 to present, Bengaluru, Karnataka</p>
+              <p class="role-skills">AWS, Python, and more</p>
+            </div>
+          </li>
+          <li class="timeline-item panel">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <p class="role-title">Software Engineer</p>
+              <p class="role-company">yellow.ai, full-time</p>
+              <p class="role-meta">Dec 2020 to Feb 2022, Bengaluru, Karnataka</p>
+              <p class="role-desc">
+                Artificial intelligence powered enterprise chatbots. Built full-fledged bots for clients
+                by turning their problem statements into technically feasible chatbots.
+              </p>
+              <p class="role-skills">JavaScript, SQL</p>
+            </div>
+          </li>
+          <li class="timeline-item panel">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <p class="role-title">Software Engineer</p>
+              <p class="role-company">Fokal AI</p>
+              <p class="role-meta">Jan 2020 to Dec 2020, Greater Bengaluru Area</p>
+              <p class="role-desc">
+                Data transformation tooling: a full application with a user-friendly UI for
+                extracting and working with data pipelines.
+              </p>
+              <p class="role-skills">AWS, Python</p>
+            </div>
+          </li>
+        </ol>
+      </section>
 
-    <section class="section section-contact" id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h" class="section-title section-title-outside">Contact</h2>
-      <div class="contact-row">
-        <a class="contact-chip glass" href="https://www.linkedin.com/in/send2mridul" rel="noopener noreferrer">
-          <span class="contact-chip-label">LinkedIn</span>
-          <span class="contact-chip-value">in/send2mridul</span>
-        </a>
-        <a class="contact-chip glass" href="https://github.com/send2mridul" rel="noopener noreferrer">
-          <span class="contact-chip-label">GitHub</span>
-          <span class="contact-chip-value">send2mridul</span>
-        </a>
-      </div>
-    </section>
-  </main>
+      <section class="section" id="education" aria-labelledby="edu-h">
+        <h2 id="edu-h" class="section-title section-title-outside">Education</h2>
+        <div class="edu-grid">
+          <article class="panel edu-card">
+            <h3 class="edu-name">CMR Institute of Technology</h3>
+            <p class="edu-detail">Bachelor of Engineering, Computer Science</p>
+            <p class="edu-meta">Bengaluru, 2016 to 2020</p>
+            <p class="edu-tags">Android development, Java</p>
+          </article>
+          <article class="panel edu-card">
+            <h3 class="edu-name">Kendriya Vidyalaya</h3>
+            <p class="edu-detail">Computer Science</p>
+            <p class="edu-meta">2005 to 2016, Grade 12</p>
+          </article>
+        </div>
+      </section>
 
-  <footer class="foot glass-foot">
-    <p>© <span id="y"></span> Mridul Singh · <a href="https://github.com/send2mridul/send2mridul.github.io">View source</a></p>
-    <p class="photo-credit">Background: Milad Fakurian on <a href="https://unsplash.com/photos/a-close-up-of-a-white-wall-with-a-hole-in-it-NgI2u2mPWK4" rel="noopener noreferrer">Unsplash</a></p>
-  </footer>
+      <section class="section section-contact" id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h" class="section-title section-title-outside">Contact</h2>
+        <div class="contact-row">
+          <a class="contact-chip panel" href="https://www.linkedin.com/in/send2mridul" rel="noopener noreferrer">
+            <span class="contact-chip-label">LinkedIn</span>
+            <span class="contact-chip-value">in/send2mridul</span>
+          </a>
+          <a class="contact-chip panel" href="https://github.com/send2mridul" rel="noopener noreferrer">
+            <span class="contact-chip-label">GitHub</span>
+            <span class="contact-chip-value">send2mridul</span>
+          </a>
+        </div>
+      </section>
+    </main>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        var id = a.getAttribute("href");
-        if (id.length > 1 && id.startsWith("#")) {
-          var el = document.querySelector(id);
-          if (el) {
-            e.preventDefault();
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-            if (el.tabIndex === -1) el.focus({ preventScroll: true });
-          }
-        }
-      });
-    });
-  </script>
+    <footer class="foot">
+      <p>© <span id="y"></span> Mridul Singh · <a href="https://github.com/send2mridul/send2mridul.github.io">View source</a></p>
+    </footer>
+  </div>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
