@@ -16,7 +16,7 @@
   <a class="skip" href="#main">Skip to portfolio</a>
 
   <div id="terminal-stage" class="terminal-stage">
-    <div class="terminal window-shake-target" role="region" aria-label="Terminal">
+    <div class="terminal" role="region" aria-label="Terminal">
       <div class="terminal-chrome">
         <span class="dot dot-red" aria-hidden="true"></span>
         <span class="dot dot-yellow" aria-hidden="true"></span>
@@ -25,15 +25,15 @@
       </div>
       <div class="terminal-screen">
         <div id="terminal-lines" class="terminal-lines" aria-live="polite"></div>
-        <div class="terminal-line input-row" id="terminal-input-row">
+        <div class="terminal-line input-row" id="terminal-input-row" aria-live="polite">
           <span class="prompt" aria-hidden="true"><span class="prompt-user">visitor@mridul.dev</span><span class="prompt-path">:~$</span></span>
-          <label class="sr-only" for="terminal-input">Enter full name to continue</label>
-          <span class="typed" id="terminal-mirror" aria-hidden="true"></span><span class="cursor" id="terminal-cursor" aria-hidden="true"></span>
-          <input type="text" id="terminal-input" class="terminal-field" name="identity" autocomplete="off" spellcheck="false" />
+          <span class="input-pack">
+            <span class="typed" id="terminal-mirror"></span><span class="cursor" id="terminal-cursor" aria-hidden="true"></span>
+          </span>
         </div>
       </div>
     </div>
-    <p class="terminal-hint"><kbd>Enter</kbd> to submit · type <span class="accent">Mridul Singh</span></p>
+    <p class="terminal-hint">Identity resolves automatically<span class="terminal-hint-dim"> · skip below if you are in a hurry</span></p>
     <button type="button" class="skip-intro" id="skip-intro">View portfolio</button>
   </div>
 

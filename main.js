@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var ACCEPT = "mridul singh";
+  var FULL_NAME = "Mridul Singh";
   var reducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia &&
@@ -10,11 +10,9 @@
   var body = document.body;
   var stage = document.getElementById("terminal-stage");
   var linesEl = document.getElementById("terminal-lines");
-  var input = document.getElementById("terminal-input");
   var mirror = document.getElementById("terminal-mirror");
   var cursor = document.getElementById("terminal-cursor");
   var inputRow = document.getElementById("terminal-input-row");
-  var terminalBox = document.querySelector(".window-shake-target");
   var portfolioWrap = document.getElementById("portfolio-wrap");
   var skipIntro = document.getElementById("skip-intro");
   var skipLink = document.querySelector('.skip[href="#main"]');
@@ -41,32 +39,8 @@
     linesEl.scrollTop = linesEl.scrollHeight;
   }
 
-  function normalizeName(s) {
-    return String(s || "")
-      .toLowerCase()
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function setInputEnabled(on) {
-    input.disabled = !on;
-    if (on) {
-      input.focus();
-    }
-  }
-
-  function syncMirror() {
-    mirror.textContent = input.value;
-  }
-
-  function shake() {
-    if (!terminalBox) return;
-    terminalBox.classList.remove("is-shake");
-    void terminalBox.offsetWidth;
-    terminalBox.classList.add("is-shake");
-    setTimeout(function () {
-      terminalBox.classList.remove("is-shake");
-    }, 500);
+  function skippedIntro() {
+    return body.classList.contains("is-unlocked");
   }
 
   function unlockPortfolio() {
@@ -80,8 +54,43 @@
     }
   }
 
-  async function runBoot() {
-    setInputEnabled(false);
+  async function typeNameAuto() {
+    var charMs = reducedMotion ? 0 : 72;
+    mirror.textContent = "";
+    if (cursor) cursor.style.display = "";
+
+    if (reducedMotion) {
+      mirror.textContent = FULL_NAME;
+      return;
+    }
+
+    for (var i = 0; i < FULL_NAME.length; i++) {
+      if (skippedIntro()) return;
+      mirror.textContent += FULL_NAME.charAt(i);
+      linesEl.scrollTop = linesEl.scrollHeight;
+      await delay(charMs);
+    }
+  }
+
+  async function finishUnlock() {
+    if (skippedIntro()) return;
+    if (cursor) cursor.style.display = "none";
+    appendLine("[ok] identity match", "ok");
+    await delay(reducedMotion ? 0 : 200);
+    appendLine("[ok] loading profile bundle …", "ok");
+    await delay(reducedMotion ? 0 : 350);
+    appendLine("welcome, " + FULL_NAME + ".", "ok");
+    await delay(reducedMotion ? 0 : 280);
+    if (inputRow) inputRow.style.display = "none";
+    if (stage) {
+      var hint = document.querySelector(".terminal-hint");
+      if (hint) hint.style.display = "none";
+      if (skipIntro) skipIntro.style.display = "none";
+    }
+    unlockPortfolio();
+  }
+
+  async function runSequence() {
     var pace = reducedMotion ? 0 : 380;
 
     var bootScript = [
@@ -89,60 +98,31 @@
       { t: "[ok] assets verified", c: "ok" },
       { t: "[ok] link secure channel", c: "ok" },
       { t: "session: visitor@mridul.dev", c: "boot" },
-      { t: "hint: export NAME=\"<your full name>\"", c: "boot" },
+      { t: "resolving identity from local trust store …", c: "boot" },
     ];
 
     for (var i = 0; i < bootScript.length; i++) {
+      if (skippedIntro()) return;
       appendLine(bootScript[i].t, bootScript[i].c);
       if (pace) await delay(pace);
     }
 
+    if (skippedIntro()) return;
     if (pace) await delay(200);
     appendCmdLine('read -p "identity: " NAME && echo "unlocking…"');
+    if (skippedIntro()) return;
     if (pace) await delay(280);
-    appendLine("identity required. Type your full name and press Enter.", "boot");
+    appendLine("typing verified name …", "boot");
+    if (skippedIntro()) return;
+    if (pace) await delay(160);
 
-    setInputEnabled(true);
-    syncMirror();
+    await typeNameAuto();
+    if (skippedIntro()) return;
+    if (pace) await delay(120);
+    appendCmdLine('echo "' + FULL_NAME + '"');
+    if (skippedIntro()) return;
+    await finishUnlock();
   }
-
-  async function onSubmit() {
-    var raw = input.value;
-    var n = normalizeName(raw);
-    appendCmdLine('echo "' + raw.replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"');
-
-    if (n === ACCEPT) {
-      setInputEnabled(false);
-      appendLine("[ok] identity match", "ok");
-      await delay(reducedMotion ? 0 : 200);
-      appendLine("[ok] loading profile bundle …", "ok");
-      await delay(reducedMotion ? 0 : 350);
-      appendLine("welcome, Mridul Singh.", "ok");
-      await delay(reducedMotion ? 0 : 280);
-      inputRow.style.display = "none";
-      if (cursor) cursor.style.display = "none";
-      if (stage) {
-        var hint = document.querySelector(".terminal-hint");
-        if (hint) hint.style.display = "none";
-        if (skipIntro) skipIntro.style.display = "none";
-      }
-      unlockPortfolio();
-    } else {
-      appendLine("unknown identity. Expected the owner full name.", "err");
-      shake();
-      input.value = "";
-      syncMirror();
-    }
-  }
-
-  input.addEventListener("input", syncMirror);
-
-  input.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      onSubmit();
-    }
-  });
 
   if (skipIntro) {
     skipIntro.addEventListener("click", function () {
@@ -173,12 +153,5 @@
     });
   });
 
-  var screen = document.querySelector(".terminal-screen");
-  if (screen) {
-    screen.addEventListener("click", function () {
-      if (input && !input.disabled) input.focus();
-    });
-  }
-
-  runBoot();
+  runSequence();
 })();
