@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mridul — send2mridul</title>
+  <meta name="description" content="Mridul — projects and contact." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <p class="eyebrow">Portfolio</p>
+    <h1 class="name">Mridul</h1>
+    <p class="lede">
+      Software, side projects, and whatever I’m shipping lately. I update this when there’s
+      something worth pointing to.
+    </p>
+  </header>
+
+  <main id="main">
+    <section class="block" aria-labelledby="now-heading">
+      <h2 id="now-heading">Now</h2>
+      <p>
+        Replace this with a sentence or two: day job focus, current learning, or what you’re
+        trying to get better at. Specific beats generic.
+      </p>
+    </section>
+
+    <section class="block" aria-labelledby="work-heading">
+      <h2 id="work-heading">Selected work</h2>
+      <ul class="work-list">
+        <li>
+          <span class="work-year">2026</span>
+          <span class="work-body">
+            <a href="https://github.com/send2mridul" rel="noopener noreferrer">GitHub profile</a>
+            — code and experiments. Put your best project first when you add entries below.
+          </span>
+        </li>
+        <li>
+          <span class="work-year">—</span>
+          <span class="work-body">
+            <span class="muted">Placeholder:</span> short title · one sentence on outcome, not buzzwords.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="block" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>
+        <a href="https://www.linkedin.com/in/send2mridul" rel="noopener noreferrer">LinkedIn — send2mridul</a><br />
+        <a href="https://github.com/send2mridul" rel="noopener noreferrer">GitHub — send2mridul</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© <span id="y"></span> · <a href="https://github.com/send2mridul/send2mridul.github.io">Source</a></p>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
